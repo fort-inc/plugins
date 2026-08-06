@@ -1,0 +1,13 @@
+{
+  "name": "fort-plugins",
+  "owner": {
+    "name": "Fort"
+  },
+  "plugins": [
+    {
+      "name": "review",
+      "source": "./review",
+      "description": "成果物や決めごとを出す前に、別の目で見直す手順。合言葉は「見直して」"
+    }
+  ]
+}
