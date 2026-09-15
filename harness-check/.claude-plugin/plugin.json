@@ -1,0 +1,9 @@
+{
+  "name": "harness-check",
+  "description": "Claude Code に読ませている設定と記録の状態を診断し、直すとよい所を日本語の診断書 HTML にして開く。合言葉は「診断して」",
+  "version": "1.0.0",
+  "author": {
+    "name": "Fort"
+  },
+  "license": "MIT"
+}
