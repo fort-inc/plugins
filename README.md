@@ -22,9 +22,18 @@ claude plugin install <プラグイン名>@fort-plugins
 | 名前 | 何をするか | 合言葉 |
 |---|---|---|
 | review | 成果物や決めごとを出す前に、別の目で見直す | 「見直して」 |
-| harness-check | Claude Code に読ませている設定と記録の状態を診断し、直すとよい所を日本語の診断書にする | 「診断して」「ハーネスを診て」 |
+| harness-check | Claude Code に読ませている設定と記録の状態を診断し、直すとよい所を日本語の診断書にする | 「ハーネス診断」「ハーネス保全」 |
 
-harness-check はあなたの環境に何も作らない・変えない・消さないで、読むだけです。診断書は OS の一時フォルダに出ます。
+harness-check はあなたの環境に何も作らない・変えない・消さないで、読むだけです。診断書は OS の一時フォルダに出ます。診断には 15〜25 分かかります。
+
+## 新しい版に更新する
+
+すでに入れている時は、ターミナルで次の2行を順に打ちます。打ち終えたら Claude Code を起動し直してください。
+
+```
+claude plugin marketplace update fort-plugins
+claude plugin update harness-check@fort-plugins
+```
 
 ## zip で受け取った場合
 

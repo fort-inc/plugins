@@ -9,204 +9,186 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ハーネス診断書</title>
 <style>
-:root{--paper:#f2f1ec;--ink:#222831;--ink2:#3b434c;--muted:#6f7781;--faint:#9aa1a8;--line:#e2e0d8;--line2:#eeece5;--ac:#3d5a73;--ac-deep:#2b4055;--ac-soft:#eaeff3;--big:#ac432d;--big-bg:#f7e9e5;--big-ln:#e3c4bb;--mid:#b47c25;--mid-bg:#faf0dd;--mid-ln:#e6d3ac;--sml-bg:#edecea;--sml-ln:#dad8d3;--ok:#2f7a4f}
-*{box-sizing:border-box}
-html{color-scheme:light}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",Meiryo,system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.75;-webkit-font-smoothing:antialiased}
-.sheet{max-width:880px;margin:0 auto;padding:26px 20px 70px}
-.spec{border:1px solid var(--line);border-radius:3px;background:#fbfaf7;padding-bottom:22px}
-.spec-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;padding:13px 20px;background:var(--ac-deep);color:#fff;border-radius:2px 2px 0 0}
-.spec-top b{font-size:13.5px;letter-spacing:.12em}
-.spec-top span{font-size:11.5px;color:#b9c8d4;letter-spacing:.06em}
-.spec-env{padding:12px 20px;font-size:12px;color:var(--muted);border-bottom:1px dashed var(--line)}
-.total{display:flex;align-items:flex-end;gap:20px;padding:22px 20px 18px;flex-wrap:wrap;border-bottom:1px solid var(--line2)}
-.total .num{font-size:66px;line-height:.9;font-weight:700;color:var(--ac-deep);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.total .unit{font-size:17px;color:var(--muted);margin-left:4px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:10px;padding:18px 20px}
-.tile{border:1px solid var(--line);background:#fff;border-radius:2px;padding:11px 12px 12px}
-.tile .nm{font-size:12px;color:var(--ink2);font-weight:700}
-.tile .sc{display:flex;align-items:baseline;gap:3px;margin-top:5px}
-.tile .sc b{font-size:26px;line-height:1;color:var(--ac-deep);font-variant-numeric:tabular-nums}
-.tile .sc i{font-style:normal;font-size:11px;color:var(--faint)}
-.tile .fm{margin-left:6px;font-size:15px;font-weight:700}
-.fm.ok{color:var(--ok)}
-.fm.ng{color:var(--big)}
-.bar{height:5px;background:var(--line2);border-radius:3px;margin-top:8px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--ac);border-radius:3px}
-.tile.mid .bar i{background:var(--mid)}
-.tile.low .bar i{background:var(--big)}
-.tile.off{background:#f4f3f0;border-style:dashed}
-.tile.off .nm{color:var(--faint)}
-.tile.off .sc b{font-size:13px;line-height:2;color:var(--faint)}
-.tile.off .bar i{background:var(--line)}
-.tile .one{margin-top:7px;font-size:10.5px;color:var(--muted);line-height:1.4}
-.bonus{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:4px 20px 18px;border-bottom:1px solid var(--line2)}
-.bonus .lb{font-size:11.5px;color:var(--muted);letter-spacing:.08em;margin-right:4px}
-.brow{display:flex;align-items:baseline;gap:10px;flex:1 1 100%}
-.chip{font-size:12px;border:1px solid var(--ac);border-radius:2px;padding:3px 10px;background:var(--ac-soft);color:var(--ac-deep);font-weight:700;white-space:nowrap}
-.chip em{font-style:normal;margin-left:6px}
-.brow .why{font-size:12px;color:var(--muted);line-height:1.6}
-.close{margin:20px 20px 0;padding:12px 16px;background:var(--ac-soft);border-left:3px solid var(--ac);font-size:13px;color:var(--ac-deep);font-weight:700}
-.recs{padding:16px 20px 0}
-.recs .lb{font-size:11.5px;color:var(--muted);letter-spacing:.08em}
-.rec{border:1px solid var(--line);border-left:3px solid var(--ac);background:#fff;border-radius:2px;padding:12px 14px;margin-top:10px}
-.rec.big{border-left-color:var(--big)}
-.rec.mid{border-left-color:var(--mid)}
-.rec-h{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px}
-.rec-h .st{font-size:13px;font-weight:700;color:var(--ink)}
-.rec p{margin:6px 0 0;color:var(--ink2);font-size:12.5px;line-height:1.8}
-.w{display:inline-block;min-width:26px;text-align:center;font-size:11.5px;font-weight:700;line-height:1.6;padding:1px 7px;border-radius:2px;border:1px solid}
-.w-big{color:var(--big);background:var(--big-bg);border-color:var(--big-ln)}
-.w-mid{color:var(--mid);background:var(--mid-bg);border-color:var(--mid-ln)}
-.w-sml{color:var(--muted);background:var(--sml-bg);border-color:var(--sml-ln)}
-@media (max-width:640px){.sheet{padding:18px 14px 50px}.total .num{font-size:52px}}
+  :root{--bg:#f6f5f1;--card:#ffffff;--ink:#1e242c;--dim:#6b727b;--line:#e3e0d8;--ok:#1f7a4d;--ng:#b3261e;--na:#9aa0a6;--acc:#2d4a6b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Yu Gothic UI","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;font-size:15px;line-height:1.7}
+  .wrap{max-width:860px;margin:0 auto;padding:36px 20px 80px}
+  h1{font-size:22px;margin:0 0 4px}
+  .meta{color:var(--dim);font-size:13px;margin-bottom:18px}
+  .intro{margin:0 0 18px}
+  .score{display:flex;align-items:baseline;gap:14px;margin:18px 0 6px}
+  .score b{font-size:40px;line-height:1}
+  .score span{color:var(--dim)}
+  .note{color:var(--dim);font-size:13.5px;margin:0 0 22px}
+  .dept{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:12px}
+  .dept h2{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;margin:0 0 8px}
+  .dept h2 .pt{font-size:14px;color:var(--dim);font-weight:600}
+  .cells{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 6px;font-size:13.5px}
+  .cells .ok::before{content:"○ ";color:var(--ok);font-weight:700}
+  .cells .ng::before{content:"× ";color:var(--ng);font-weight:700}
+  .cells .na{color:var(--na)}
+  .find{border-left:3px solid var(--ng);padding:6px 12px;margin:8px 0;background:#fff7f6;border-radius:0 6px 6px 0}
+  .find b{display:block;margin-bottom:2px}
+  .find p{margin:2px 0;font-size:14px}
+  .unused{color:var(--dim);font-size:14px}
+  .bonus{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:18px 0 12px}
+  .bonus h2{font-size:15px;margin:0 0 6px}
+  .bonus p{margin:4px 0;font-size:14px}
+  .bonus p b{margin-right:6px}
+  .bonus .none{color:var(--dim)}
+  .close{background:#eef2f6;border-radius:10px;padding:14px 18px;margin-top:18px}
+  .close h2{font-size:15px;margin:0 0 6px;color:var(--acc)}
 </style>
 </head>
 <body>
-<div class="sheet">
-<div class="spec">
-  <div class="spec-top"><b>ハーネス診断書</b><span>{{診断日時}}　対象: {{対象パス}}　Claude Code {{版}}</span></div>
-  <div class="spec-env">ハーネスとは、Claude Code に読ませている設定と記録の一式です。</div>
-  <div class="spec-env">{{見たもの}}</div>
-  <div class="spec-env">{{読まなかったもの}}</div>
-  <div class="total"><div><span class="num">{{全体の点}}</span><span class="unit">点 / 100</span></div></div>
-  <div class="tiles">
-{{部門タイル}}
-  </div>
-  <div class="bonus"><span class="lb">加点 +{{加点の合計}}</span>
-{{加点}}
-  </div>
-  <div class="close">直すかどうかは、あなたが決めてください。AI の振る舞いに不満がなければ、このまま使って構いません。</div>
-  <div class="recs"><span class="lb">直すなら</span>
-{{推奨}}
-  </div>
-  <div class="close">{{最後の段}}</div>
-</div>
+<div class="wrap">
+
+<h1>ハーネス診断書</h1>
+<div class="meta">{{診断日時}}　対象: {{対象パス}}　Claude Code {{版}}</div>
+
+<p class="intro">ハーネスとは、Claude Code に読ませている設定と記録の一式です。<br>見たもの: {{見たもの}}</p>
+
+<div class="score"><b>{{全体の点}}</b><span>点 / 100</span></div>
+<p class="note">直すかどうかは、あなたが決めてください。AI の振る舞いに不満がなければ、このまま使って構いません。</p>
+
+{{部門ブロック}}
+
+{{加点ブロック}}
+
+{{締めのブロック}}
 </div>
 </body>
 </html>
 ```
 
-繰り返す部分の形。`{{部門タイル}}` は7つ並べる。
+## 繰り返す部分の形
+
+`{{部門ブロック}}` は部門の数だけ並べる。`{{加点ブロック}}` と `{{締めのブロック}}` は1つずつ。
+
+部門ブロック。点がある時。`.cells` の `<span>` は観点の数だけ並べる。クリアは class `ok`、未クリアは class `ng`、確かめられずは class `na`。`.find` は未クリアの観点ごとに1つ以上置く。同じ観点に別の事実が複数ある時は、事実ごとに `.find` を分ける。1つの事実が複数の観点に当たる時は、観点名を「 / 」で並べて `.find` を1つにまとめる。
 
 ```html
-<div class="tile{{ 空 / mid / low }}">
-  <div class="nm">{{部門名}}</div>
-  <div class="sc"><b>{{点}}</b><i>/ 20</i><span class="fm {{ok / ng}}">{{○ / ×}}</span></div>
-  <div class="bar"><i style="width:{{点を5倍した数}}%"></i></div>
-  <div class="one">{{一言}}</div>
-</div>
-<div class="tile off">
-  <div class="nm">{{部門名}}</div>
-  <div class="sc"><b>使っていない</b></div>
-  <div class="bar"><i style="width:100%"></i></div>
-  <div class="one">{{一言}}</div>
+<div class="dept">
+  <h2>{{部門名}} <span class="pt">{{部門の点}} / {{部門の満点}}</span></h2>
+  <div class="cells"><span class="ok">{{観点名}}</span><span class="ng">{{観点名}}</span><span class="na">{{観点名}} 確かめられず</span></div>
+  <div class="find"><b>{{観点名}} — {{見つけた事の一文}}。影響 {{重さ}}</b>
+    <p>{{本文}}</p></div>
 </div>
 ```
 
+部門ブロック。使っていない時。
+
 ```html
-<div class="brow"><span class="chip">{{加点の名前}}<em>+2</em></span><span class="why">{{理由の1文}}</span></div>
-<div class="rec {{big / mid / sml}}"><div class="rec-h"><span class="st">{{番号}}. {{見出し}}</span><span class="w w-{{big / mid / sml}}">{{大 / 中 / 小}}</span></div><p>{{本文}}</p></div>
+<div class="dept">
+  <h2>{{部門名}} <span class="pt">使っていない</span></h2>
+  <p class="unused">{{使っていない部門の一言}}</p>
+</div>
+```
+
+部門ブロック。確かめられなかった時。
+
+```html
+<div class="dept">
+  <h2>{{部門名}} <span class="pt">確かめられなかった</span></h2>
+  <p class="unused">{{確かめられなかった部門の一言}}</p>
+</div>
+```
+
+加点ブロック。`<p>` は加点の分類の数だけ、`criteria.md` の加点の分類の並びで 6 つ並べる。回っている分類は 1 つ目の形、回っていない分類は 2 つ目の形。合計が 0 の時は `+0` でなく `0` と書き、`<h2>` を「加点 0 / 6」にする。
+
+```html
+<div class="bonus">
+  <h2>加点 +{{加点の合計}} / 6</h2>
+  <p><b>{{分類の名前}}</b>{{工夫の実名}}。{{楽になる事の一文}}。{{跡の一文}}</p>
+  <p class="none"><b>{{分類の名前}}</b>跡なし</p>
+</div>
+```
+
+締めのブロック。
+
+```html
+<div class="close">
+  <h2>今のハーネスの状態だと、AI はこう振る舞いやすくなります</h2>
+  <p>{{締めの本文}}</p>
+</div>
 ```
 
 ## 埋め方
 
 | 埋める所 | 何を入れるか |
 |---|---|
-| `{{診断日時}}` | 診断した日と時刻。`2026-09-15 14:20` の形 |
+| `{{診断日時}}` | 診断した日と時刻。`2026-09-17 14:03` の形 |
 | `{{対象パス}}` | 起動ディレクトリ。ホームの下なら `~/` から書く |
 | `{{版}}` | `claude --version` の出力 |
-| `{{見たもの}}` | 見た物を部門の並びで1行。user 階層と起動ディレクトリを分けて書く。使っていない部門はここで「使っていません」と書く。最後に「起動のたびに読まれるのは、〇〇の N 行です」を添える |
-| `{{読まなかったもの}}` | 読まなかった物を1行。skill の本文、記憶の古い分、秘匿ファイルなど |
-| `{{全体の点}}` | 見た部門の平均を5倍した数。加点で 100 を超えたらそのまま書く |
-| `{{部門タイル}}` | 7つ。並びは CLAUDE.md / rules、skills / commands、subagents、hooks、permissions / settings、MCP、memory |
-| タイルの色 | 15 点以上は空、8〜14 は `mid`、7 以下は `low`、使っていない部門は `off`。表示だけの区分で、評価名は付けない |
-| タイルの印 | 公式の形に合っていれば `ok` の `○`、外れていれば `ng` の `×`。使っていない部門は `<span>` ごと消す |
-| `{{一言}}` | 点を引いた理由が分かる1文。満点の部門は何を見たかを書く。使っていない部門は、無くて困らないか・いつ要るかを書く |
-| `{{加点の合計}}` | 得た加点の合計。0 なら `.bonus` の行ごと消す |
-| `{{加点}}` | 得た物だけ。得ていない加点は出さない |
-| `{{推奨}}` | 重い順。`big` が 大、`mid` が 中、`sml` が 小。番号は 1 から連番 |
-| `{{本文}}` | 実物の場所を名指しし、見つけた事、AI に何が起きるか、どうするかを続けて書く。大は厚く、中と小は短く |
-| `{{最後の段}}` | 「今のハーネスの状態だと、AI はこう振る舞いやすくなります。」で始め、見つかった問題から導いた2〜3行を書き、保全を勧める1文で閉じる |
+| `{{見たもの}}` | 見た物を部門の並びで1行。user 階層と起動ディレクトリを分けて書く。使っていない部門はここで「使っていません」と書く。MCP は行数に換算せず、接続の数だけを書く。読まなかった物があれば「読まなかったのは〇〇です」を1文添える。skill の本文、記憶の古い分、秘匿ファイルなど。末尾に「起動のたびに読まれるのは、〇〇の N 行です」を添える |
+| `{{全体の点}}` | 見た部門の点の合計 ÷ 見た部門の満点の合計 × 100 に加点を足し、四捨五入した数。100 を超えたらそのまま書く。見た部門が1つも無い時は、`.score` の div を `<div class="score"><b>確かめられなかった</b></div>` に置き換える |
+| `{{部門ブロック}}` | 部門ごとに1つ。並びは CLAUDE.md / rules、skills / commands、subagents、hooks、permissions / settings、MCP、memory、全体 |
+| `{{部門名}}` | 部門の名前。上の並びの文字列をそのまま使う |
+| `{{部門の点}}` | その部門の点。`criteria.md` の点の付け方の式で出し、四捨五入した数 |
+| `{{部門の満点}}` | その部門の満点。並びの順に 24 / 12 / 4 / 12 / 18 / 6 / 20 / 4。確かめられなかったセルがある部門は、`criteria.md` の点の付け方で縮めた満点を四捨五入した数 |
+| `{{観点名}}` | `criteria.md` の観点の名前から先頭の番号を外し、問いの形なら言い切りに直した物。公式の機構に乗っている、常時届く量、責務と置き場、二重と矛盾、実物とのずれ、正と名乗る物の更新、戻せない操作が止まる、止める物を最小に、増やす一方でない、呼び分け、記憶が自前で回っている、接続の効く範囲、鍵の扱い、git 管理、置く階層 |
+| `{{見つけた事の一文}}` | その観点で見つけた事を、その環境の実名で1文。判定基準の言い回しを写さない。`.find` の見出しの観点名は、1つの事実が複数の観点に当たる時に「 / 」で並べる |
+| `{{重さ}}` | そのセルに当てた根拠のうち一番重い物。`大` か `中` |
+| `{{本文}}` | 実物の場所を名指しし、見つけた事、AI に何が起きるか、どうするかを続けて書く。書く先・消す先のファイル名まで。大は厚く、中は短く |
+| `{{使っていない部門の一言}}` | 無くて困らないか、いつ要るか |
+| `{{確かめられなかった部門の一言}}` | 何が読めなかったか |
+| `{{加点ブロック}}` | 1つ。加点の分類 6 つを `criteria.md` の並びで 1 行ずつ。回っている分類と回っていない分類で `<p>` の形を変える |
+| `{{加点の合計}}` | 回っている分類の数。0〜6 の整数。0 の時は `+0` でなく `0` と書く |
+| `{{分類の名前}}` | `criteria.md` の加点の分類の名前をそのまま。番号は付けない |
+| `{{工夫の実名}}` | その分類で回っている工夫の、その環境での実名。ファイル名か道具の名前。複数あれば「、」で並べる |
+| `{{楽になる事の一文}}` | その工夫で何が楽になるかを1文 |
+| `{{跡の一文}}` | 直近 30 日に回った跡を1文。日付と、ファイル名か commit を入れる |
+| `{{締めのブロック}}` | 1つ。診断書の最後に置く |
+| `{{締めの本文}}` | 「今の状態で起こりやすい事」を、見つかった問題から導いて2〜3行。保全を勧める1文で閉じる。本人の症状とは書かない |
 
-雛形の構造はそのまま挿入する。`{{部門タイル}}`・`{{加点}}`・`{{推奨}}` へ入れるのは上の形の HTML そのもので、これはエスケープしない。エスケープするのは、その中に入れる末端の文字列だけ。
+雛形の構造はそのまま挿入する。`{{部門ブロック}}`・`{{加点ブロック}}`・`{{締めのブロック}}` へ入れるのは上の形の HTML そのもので、これはエスケープしない。エスケープするのは、その中に入れる末端の文字列だけ。
 
-末端の文字列とは、`{{部門名}}`・`{{一言}}`・`{{加点の名前}}`・`{{理由の1文}}`・`{{見出し}}`・`{{本文}}`・`{{診断日時}}`・`{{対象パス}}`・`{{版}}`・`{{見たもの}}`・`{{読まなかったもの}}`・`{{最後の段}}` に入る文字列。入れる前に `&` を `&amp;`、`<` を `&lt;`、`>` を `&gt;` に、この順で直す。
+末端の文字列とは、`{{部門名}}`・`{{観点名}}`・`{{見つけた事の一文}}`・`{{本文}}`・`{{使っていない部門の一言}}`・`{{確かめられなかった部門の一言}}`・`{{分類の名前}}`・`{{工夫の実名}}`・`{{楽になる事の一文}}`・`{{跡の一文}}`・`{{診断日時}}`・`{{対象パス}}`・`{{版}}`・`{{見たもの}}`・`{{締めの本文}}` に入る文字列。入れる前に `&` を `&amp;`、`<` を `&lt;`、`>` を `&gt;` に、この順で直す。
 
-class の名前・幅の `%`・点の数字には、雛形に並んでいる決まった値と、計算した数字だけを入れる。診断した環境から取った文字列をそこへ入れない。
+class の名前・点の数字・満点の数字には、雛形に並んでいる決まった値と、計算した数字だけを入れる。診断した環境から取った文字列をそこへ入れない。
 
 ## 書き方
 
 | # | 決まり |
 |---|---|
-| 1 | 人が書いた診断として読める文にする。ですます。項目名で文を切らず、同じ型の文を続けない |
-| 2 | 冒頭に「ハーネスとは、Claude Code に読ませている設定と記録の一式です」の1文。見た物を部門の並びで1行 |
-| 3 | 点は全体と部門だけ。計算式・平均・内訳を書かない |
-| 4 | 部門の一言は点を引いた理由が分かる言い方。満点の部門は何を見たかを書く。使っていない部門は「使っていない」と、無くて困らないか・いつ要るかの一言 |
-| 5 | 加点は得た物だけ、理由1文付き |
-| 6 | 判定の内側の分類の名前、見る点の番号、判定基準の言い回しを出さない。最後の段に「今の状態で起こりやすい事」を、見つかった問題から導いて2〜3行書き、保全を勧める。本人の症状とは書かない。「直すかはあなたが決める」は点の直後に1回だけ |
-| 7 | 推奨は重い順。実物の場所を名指しし、見つけた事・AI に何が起きるか・どうするかを書く。書く先・消す先のファイル名まで。大は厚く、中と小は短く |
+| 1 | 人が書いた診断として読める文にする。ですます。欄の名前で文を切らず、同じ型の文を続けない |
+| 2 | 冒頭に「ハーネスとは、Claude Code に読ませている設定と記録の一式」の1文。見たものを部門の並びで1行 |
+| 3 | 点は全体と部門と加点だけ。計算式・内訳を書かない |
+| 4 | 部門の点はその部門の満点で出す。一言は付けない。観点の ○ × を並べ、× の下に見つけた事と直し方を書く |
+| 5 | 加点は「加点 +4 / 6」の形で出し、分類ごとに1行。回っている分類は工夫の実名と、何が楽になるかと、跡。回っていない分類は「跡なし」。0 の時は「加点 0 / 6」 |
+| 6 | 内側の分類の名前・根拠の番号・判定基準の言い回しを出さない。加点の分類の名前は加点ブロックにだけ出す。締めに「今の状態で起こりやすい事」を見つかった問題から導いて2〜3行書き、保全を勧める。本人の症状とは書かない。「直すかはあなたが決める」は点の直後に1回だけ |
+| 7 | 推奨は影響の大きい順。実物の場所を名指しし、見つけた事・AI に何が起きるか・どうするかを書く。書く先・消す先のファイル名まで。大は厚く、中は短く |
 | 8 | 同じ物は同じ呼び方で通す |
-| 9 | 判定基準の抽象語を出さず、その環境の実名に置き換える。下の「使わない語」を出さない。作るたびに Grep で数える |
+| 9 | 判定基準の抽象語と、この skill の内側の呼び名を出さない。物はその環境の実名と Claude Code の公式の呼び方で書く。CLAUDE.md、rules、skill、hook、MCP、settings、セッション、ブランチ、フォルダのように |
 
 ## 内側の値と、診断書での見せ方
 
-| 内側で持つ物 | 診断書での見せ方 |
+| 内側で持つ物 | 診断書での表示 |
 |---|---|
-| 公式の線 | 部門ごとの「公式の形」の印。○ か ×。外れていれば推奨にも出す |
-| 部門の点 | 数字と一言。「10 / 20」と、点を引いた理由が分かる1文 |
-| 全体の点 | 数字だけ。「62 点 / 100」。加点で 100 を超えたらそのまま |
-| 重さ 大・中・小 | 推奨の印と、推奨の並び順 |
-| 判定の内側の分類 | 名前も番号も出さない。推奨の並び順と言い回しに使い、最後の段を導く材料にする |
-| 加点 | 得た物だけ、理由1文付き |
+| 部門の点 | その部門の満点で「12 / 24」のように出す。一言は付けない。観点の ○ × の並びが一言の代わり |
+| 全体の点 | 数字。「36 / 100」。加点を足した後の数字で、100 を超えたらそのまま |
+| セルの判定 | 部門ごとに観点の ○ × を並べる。× の下に「見つけた事と直し方」を推奨として書き、影響 大 / 中 を添える |
 | 使っていない部門 | 「使っていない」と、無くて困らないか・いつ要るかの一言 |
-| 該当を裏付けた実物 | 推奨の本文に、場所として書く。裏付けの無い物は推奨に出さない |
-| 見る点 34 本 | 出さない。推奨は見る点の名前ではなく、その環境で見つけた事として書く |
-| 起動のたびに読まれる量 | 「見たもの」の行に、ファイルの行数として添える。MCP は行数に換算せず、接続の数だけを書く |
-| 根拠の控え | 見る点の番号と引用は診断書に出さない。同じ一時フォルダの `harness-check-<年月日-時分>-basis.md` に書く。検品用で、顧客には見せない |
+| 確かめられなかった部門 | 「確かめられなかった」と、何が読めなかったかの一言 |
+| 加点の分類 6 つ | 「加点 +4 / 6」と、分類ごとに 1 行。回っている分類は工夫の実名と、何が楽になるかの 1 文と、跡の 1 文。回っていない分類は分類の名前と「跡なし」。0 の時は「加点 0 / 6」 |
+| 加点の候補と条件の判定 | 診断書には出さない。根拠の控えに、分類ごとに候補にした仕掛けの一覧、条件の判定、引いた跡を並べる |
+| 内側の分類 6つ | 名前も番号も出さない。推奨の並び順と言い回しに使い、締めの「今の状態で起こりやすい事」を導く材料にする |
+| 落とす根拠の引用 | 推奨の本文に、実物の場所として。引用が無い物は推奨に出さない |
+| 起動時に届く量 | 見たものの行に、起動のたびに読まれる行数を添える |
+| 根拠の番号・セルの内側の番号・計算式 | 診断書には出さない。検品用に、診断書と同じ場所へ「根拠の控え」を別ファイルで出し、部門ごとのセルの判定と当てた根拠と引用を並べる |
+| 締め | 「今の状態で起こりやすい事」を2〜3行と、保全を勧める1文。本人の症状とは書かない |
 
-## 使わない語
-
-顧客が読む物なので、この skill の中だけで通じる語を出さない。左を使わず右で書く。
-
-| 使わない語 | 代わりに書く語 |
-|---|---|
-| 「屋根」 | そのフォルダ、その一式 |
-| 「入口」 | CLAUDE.md |
-| 「面」 | 画面 |
-| 「枝」 | ブランチ |
-| 「器」 | 置き場、フォルダ |
-| 「箱」 | 置き場 |
-| 「窓」 | セッション |
-| 「関所」 | commit 前の検査 |
-| 「検問」 | hook |
-| 「正本」 | これが正しいと決めた文書 |
-| 「版管理」 | バージョン管理 |
-| 「回転」 | 使わない |
-| 「締め」 | セッションの終わり |
-| 「昇華」 | 使わない |
-| 「パトロール」 | 定期の見回り |
-| 「走行」 | 実行 |
-| 「台帳」 | 一覧 |
-| 「隊員」 | 使わない |
-| 「所見」 | 見つけた事 |
-| 「常時届く」 | 起動のたびに読まれる、毎回読まれる |
-| 「手順書」 | skill |
-| 「書き口、引き口」 | 記憶を書く場所、記憶を読み返す道筋 |
-| 「対象外」 | 使っていない |
-
-欄の名前として使わない語。診断書の中で `痕跡` `影響` `直し方` を項目名にしない。文の中に溶かして書く。
+診断書の中で `痕跡` `影響` `直し方` を欄の名前にしない。文の中に溶かして書く。
 
 ## 作った後に数える
 
-HTML を作ったら、次を確かめてから開く。数えるのは Claude Code の Grep で行う。shell の `grep` は使わない。
+HTML を作ったら、次を確かめてから開く。数えるのは Claude Code の Grep で行い、look-around を使わない。shell の `grep` は使わない。
 
-1. 上の「使わない語」の左の列を、作った HTML に対して Grep する。0 件であること。
-2. `痕跡` `影響` `直し方` を Grep する。項目名として出ていないこと。
-3. 見る点の番号(`1-1` のような形)と、内側の分類の番号が出ていないこと。
-4. 計算式、平均、`/ 20` 以外の内訳が出ていないこと。
-5. 鍵・token・password の値が出ていないこと。伏せ読みの `***` 以外の値が無いこと。
-6. `{{` が1つも残っていないこと。
+1. `痕跡` `影響` `直し方` が項目名として出ていないこと。`.find` の見出しの「影響 大」は項目名ではない。
+2. 根拠の番号と内側の分類の番号が出ていないこと。`1-1` のような形。日付とファイル名は除く。
+3. 計算式と内訳が出ていないこと。部門の「点 / 満点」は内訳ではない。
+4. 鍵・token・password の値が出ていないこと。
+5. `{{` が1つも残っていないこと。
