@@ -23,6 +23,7 @@ claude plugin install <プラグイン名>@fort-plugins
 |---|---|---|
 | review | 成果物や決めごとを出す前に、別の目で見直す | 「見直して」 |
 | harness-check | Claude Code に読ませている設定と記録の状態を診断し、直すとよい所を日本語の診断書にする | 「ハーネス診断」「ハーネス保全」 |
+| shikichi-sima | 測量図の座標求積表から、CAD に読み込む敷地データ(SIMA／DXF)を検算付きで作る。実機で確かめた CAD は ARCHITREND ZERO のみ | 「測量図から敷地データ作って」「SIMA作って」 |
 
 harness-check はあなたの環境に何も作らない・変えない・消さないで、読むだけです。診断書は OS の一時フォルダに出ます。診断には 15〜25 分かかります。
 
